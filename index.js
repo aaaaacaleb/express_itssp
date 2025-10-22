@@ -13,8 +13,6 @@ app.get('/inicio', (req, res) => {
 });
 
 
-
-
 app.listen(port, () => {
     console.log('Servidor inicializado en http://localhost:' + port);
 });
