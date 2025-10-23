@@ -26,6 +26,7 @@ app.get("/productos", async (req, res) => {
             return {
                 id: doc.id,
                 nombre: data.nombre,
+                descripcion: data.descripcion,
                 precio: data.precio,
                 imagen: data.imagen
             };
@@ -36,6 +37,26 @@ app.get("/productos", async (req, res) => {
     }
 });
 
+app.get('/productos/add', (req, res) => {
+res.render('form',{ producto: null, nombre: 'Crear Producto' });
+});
+
+app.post("/productos", async (req, res) => {
+    try{
+        const {nombre, descripcion, precio, imagen} = req.body;
+        const nuevo = {
+            nombre: nombre || '',
+            descripcion,
+            precio: precio,
+            imagen: imagen || ''
+        };
+        await db.collection('productos').add(nuevo);
+        res.redirect('/productos');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al crear producto');
+    }
+});
 
 app.listen(port, () => {
     console.log('Servidor inicializado en http://localhost:' + port);
