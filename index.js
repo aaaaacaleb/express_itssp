@@ -34,7 +34,7 @@ admin.initializeApp({
 
 const db = admin.firestore();// Rutas de la API de productos
 
-app.get("/productos", async (req, res) => {
+app.get("/", async (req, res) => {
     try{
         const items = await db.collection("productos").get();
         const productos = items.docs.map(doc => {
