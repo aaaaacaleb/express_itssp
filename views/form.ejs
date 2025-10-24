@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/inicio_sesion.css" />
+
     <title><%= nombre %></title>
 </head>
 <body>
@@ -39,7 +39,7 @@ body {
   margin-right: 0%;
   margin-top: 10%;
   max-width: 250px;
-  max-height:fit-content
+  max-height: fit-content;
   max-width: 250px;
   max-height: fit-content;
 }
@@ -127,7 +127,7 @@ footer {
 
       <h2><%= nombre %></h2>
 
-      
+      <form action="<%= formAction %>" method="POST">
         <label for="nombre">Nombre del producto</label>
         <input type="text" id="nombre" name="nombre" required />
 
