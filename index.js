@@ -62,7 +62,7 @@ app.post("/productos", async (req, res) => {
         const {nombre, descripcion, precio, imagen} = req.body;
         const nuevo = {
             nombre: nombre || '',
-            descripcion,
+            descripcion: descripcion || '',
             precio: precio,
             imagen: imagen || ''
         };
@@ -71,6 +71,49 @@ app.post("/productos", async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Error al crear producto');
+    }
+});
+
+
+app.get('/productos', async (req, res) => {
+    try {
+        const items = await db.collection("productos").get();
+        const productos = items.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                nombre: data.nombre,
+                descripcion: data.descripcion,
+                precio: data.precio,
+                imagen: data.imagen
+            };
+        });
+        res.render('inicio', { productos });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/productos/:id', async (req, res) => {
+    try {
+        const productoId = req.params.id;
+        
+        const doc = await db.collection('productos').doc(productoId).get();
+        
+        if (doc.exists) {
+            const producto = {
+                id: doc.id,
+                ...doc.data()
+            };
+            
+            return res.render('detalle', { producto });
+        } else {
+            return res.status(404).send("Producto no encontrado");
+        }
+        
+    } catch (error) {
+        console.error('Error al obtener producto:', error);
+        res.status(500).send("Error interno del servidor");
     }
 });
 
