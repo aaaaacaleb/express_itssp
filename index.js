@@ -53,7 +53,7 @@ app.get("/", async (req, res) => {
     }
 });
 
-app.get('/productos/add', (req, res) => {
+app.get('/productos/:add', (req, res) => {
 res.render('form',{ producto: null, nombre: 'Crear Producto' });
 });
 
