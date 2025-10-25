@@ -1,0 +1,32 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Caleb",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "ejs-lint": "^2.0.1",
+    "express": "^5.1.0",
+    "firebase": "^12.4.0",
+    "firebase-admin": "^13.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaaaacaleb/express_itssp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aaaaacaleb/express_itssp/issues"
+  },
+  "homepage": "https://github.com/aaaaacaleb/express_itssp#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
